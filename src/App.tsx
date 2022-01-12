@@ -1,8 +1,12 @@
+import { GlobalStyle } from "./styles/global";
+import { Navbar } from "./components/Navbar";
+
 function App() {
   return (
-    <div className="App">
-
-    </div>
+    <>
+        <GlobalStyle />
+        <Navbar></Navbar>
+    </>
   );
 }
 
