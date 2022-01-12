@@ -11,10 +11,18 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }
 
+    html, body, #root {
+        height: 100%;
+    }
+
+    #root {
+        display: flex;
+    }
+
     body {
         background: var(--background);
     }
-    
+
     body, input, textarea, button {
         font-family: sans-serif;
         font-weight: 400;
