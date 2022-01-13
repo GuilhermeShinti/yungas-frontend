@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.nav`
     height: 100%;
-    width: 100px;
+    /* width: 100px; */
     display: flex;
     background: #222E44;
 
@@ -11,7 +11,7 @@ export const Container = styled.nav`
         flex-direction: column;
         align-items: center;
         list-style: none;
-        width: 100%;
+        width: 100px;
         
         li {
             display: flex;
