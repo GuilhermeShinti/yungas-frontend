@@ -6,6 +6,7 @@ import deleteIcon from "../../assets/icon-delete.svg";
 import { Modal } from "../../components/Modal";
 import { useState } from "react";
 import { Input } from "../../components/Form/Input";
+import { TextArea } from "../../components/Form/Textarea";
 
 export function Courses() {
     const [showModal, setShowModal] = useState(false);
@@ -14,6 +15,7 @@ export function Courses() {
         <>
             <Modal title="Novo Treinamento" showModal={showModal} setShowModal={setShowModal} >
                 <Input type="text" id="course-name" label="Nome"></Input>
+                <TextArea id="course-duration" label="Descrição"></TextArea>
                 <Input type="number" id="course-duration" label="Carga horária"></Input>
                 <Input type="time" id="course-activation" label="Ativação do curso"></Input>
                 <Input type="time" id="course-deactivation" label="Desativação do curso"></Input>
