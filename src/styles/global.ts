@@ -27,4 +27,16 @@ export const GlobalStyle = createGlobalStyle`
         font-family: sans-serif;
         font-weight: 400;
     }
+
+    .btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn > span.icon {
+        display: block;
+        height: 30px;
+        width: 30px;
+    }
 `;

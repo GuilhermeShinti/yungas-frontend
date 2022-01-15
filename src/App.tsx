@@ -3,6 +3,7 @@ import { Navbar } from "./components/Navbar";
 import { Sidebar } from "./components/Sidebar";
 import { Courses } from "./pages/Courses";
 import { Content } from "./components/Content";
+import { AppRoutes } from "./routes";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
         <Sidebar />
         <Content>
             <Navbar />
-            <Courses></Courses>
+            <AppRoutes />
         </Content>
         
         
