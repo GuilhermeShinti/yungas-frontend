@@ -14,8 +14,6 @@ function App() {
             <Navbar />
             <AppRoutes />
         </Content>
-        
-        
     </>
   );
 }

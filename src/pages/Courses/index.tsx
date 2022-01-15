@@ -5,6 +5,7 @@ import editIcon from "../../assets/icon-edit.svg";
 import deleteIcon from "../../assets/icon-delete.svg";
 import { Modal } from "../../components/Modal";
 import { useState } from "react";
+import { Input } from "../../components/Form/Input";
 
 export function Courses() {
     const [showModal, setShowModal] = useState(false);
@@ -12,6 +13,10 @@ export function Courses() {
     return(
         <>
             <Modal title="Novo Treinamento" showModal={showModal} setShowModal={setShowModal} >
+                <Input type="text" id="course-name" label="Nome"></Input>
+                <Input type="number" id="course-duration" label="Carga horária"></Input>
+                <Input type="time" id="course-activation" label="Ativação do curso"></Input>
+                <Input type="time" id="course-deactivation" label="Desativação do curso"></Input>
             </Modal>
             <Container>
                 <header>
