@@ -10,8 +10,8 @@ interface Course {
     description: string;
     duration: number;
     image: string;
-    start: string;
-    end: string;
+    startDate: string;
+    endDate: string;
     status: string;
 }
 
@@ -24,8 +24,8 @@ export function Courses() {
     const [name, setName] = useState<string>("");
     const [description, setDescription] = useState<string>("");
     const [duration, setDuration] = useState<number>();
-    const [startCourse, setStartCorse] = useState<string>("");
-    const [endCourse, setEndCourse] = useState<string>("");
+    const [startDate, setStartDate] = useState<string>("");
+    const [endDate, setEndDate] = useState<string>("");
 
     useEffect(() => {
         const coursesData: Course[] = [
@@ -35,8 +35,8 @@ export function Courses() {
                 description: "Um curso para introdução ao Svelte com...",
                 duration: 10,
                 image: "images/course1.png",
-                start: "22:10",
-                end: "22:10",
+                startDate: '2022-01-19T02:24:11.657Z',
+                endDate: '2022-01-19T02:24:11.657Z',
                 status: "HABILITADO"
             },
             {
@@ -45,8 +45,8 @@ export function Courses() {
                 description: "Como criar aplicativos usando React...",
                 duration: 20,
                 image: "images/course2.png",
-                start: "22:10",
-                end: "22:10",
+                startDate: '2022-01-19T02:24:11.657Z',
+                endDate: '2022-01-19T02:24:11.657Z',
                 status: "DESABILITADO"
             },
             {
@@ -55,8 +55,8 @@ export function Courses() {
                 description: "Como criar aplicativos usando React...",
                 duration: 30,
                 image: "images/course2.png",
-                start: "22:10",
-                end: "22:10",
+                startDate: '2022-01-19T02:24:11.657Z',
+                endDate: '2022-01-19T02:24:11.657Z',
                 status: "HABILITADO"
             }
         ];
@@ -69,8 +69,8 @@ export function Courses() {
             setId(0);
             setName("");
             setDescription("");
-            setStartCorse("");
-            setEndCourse("");
+            setStartDate("");
+            setEndDate("");
             setDuration(0);
         }
     }, [showModal])
@@ -81,8 +81,8 @@ export function Courses() {
         setId(course.id);
         setName(course.name);
         setDescription(course.description);
-        setStartCorse(course.start);
-        setEndCourse(course.end);
+        setStartDate(course.startDate.substring(0,10));
+        setEndDate(course.endDate.substring(0,10));
         setDuration(course.duration);
     }
 
@@ -102,8 +102,8 @@ export function Courses() {
                 <Input type="text" id="course-name" label="Nome" value={name} onChange={(e) => setName(e.target.value)}></Input>
                 <TextArea id="course-duration" label="Descrição" value={description}  onChange={(e) => setDescription(e.target.value)}></TextArea>
                 <Input type="number" id="course-duration" label="Carga horária" value={duration} onChange={(e) => setDuration(e.target.valueAsNumber)}></Input>
-                <Input type="time" id="course-activation" label="Ativação do curso" value={startCourse} onChange={(e) => setStartCorse(e.target.value)}></Input>
-                <Input type="time" id="course-deactivation" label="Desativação do curso" value={endCourse} onChange={(e) => setEndCourse(e.target.value)}></Input>
+                <Input type="date" id="course-activation" label="Ativação do curso" value={startDate} onChange={({target}) => setStartDate((target.valueAsDate ?? new Date()).toISOString().substring(0, 10))}></Input>
+                <Input type="date" id="course-deactivation" label="Desativação do curso" value={endDate} onChange={({target}) => setEndDate((target.valueAsDate ?? new Date()).toISOString().substring(0, 10))}></Input>
             </Modal>
             <Container>
                 <header>
