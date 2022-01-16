@@ -1,6 +1,7 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Container } from "./styles";
 import { Modal } from "../../components/Modal";
-import { useEffect, useState } from "react";
 import { Input } from "../../components/Form/Input";
 import { TextArea } from "../../components/Form/Textarea";
 
@@ -118,7 +119,7 @@ export function CoursesIndex() {
                                 <img src={`${course.image}`} alt="course" />
                                 <div className="course-info">
                                     <div className="course-description">
-                                        <strong className="course-name">{course.name}</strong>
+                                        <Link className="link-reset" to={`${course.id}`}><strong className="course-name">{course.name}</strong></Link>
                                         <p>{course.description}</p>
                                     </div>
                                     <div className="course-status">

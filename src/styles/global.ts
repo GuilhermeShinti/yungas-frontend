@@ -84,5 +84,10 @@ export const GlobalStyle = createGlobalStyle`
         color: #fff;
     }
 
+    .link-reset {
+        text-decoration: none;
+        color: #000;
+    }
+
 
 `;
