@@ -1,14 +1,15 @@
 import { useState, ReactChild, ReactChildren, useRef } from "react"
-import { Overlay, Container, Header, Content } from "./styles"
+import { Overlay, Container, Header, Content, Footer } from "./styles"
 
 interface ModalProps {
     title: string;
     children: JSX.Element|JSX.Element[];
     showModal: boolean;
     setShowModal: Function;
+    buttons?: JSX.Element|JSX.Element[];
   }
 
-export function Modal ({ title, children, showModal, setShowModal }: ModalProps) {
+export function Modal ({ title, children, showModal, setShowModal, buttons }: ModalProps) {
     const modalRef = useRef<any>();
 
     const closeModal = (e: React.MouseEvent) => {
@@ -24,13 +25,16 @@ export function Modal ({ title, children, showModal, setShowModal }: ModalProps)
                 <Overlay onClick={e => closeModal(e)} ref={modalRef}>
                     <Container>
                         <Header>
-                            <button className="btn" onClick={() => setShowModal(false)}><span className="icon close-icon"></span></button>
+                            <button className="btn btn-icon" onClick={() => setShowModal(false)}><span className="close-icon"></span></button>
                             <div className="title">{title}</div>
-                            <button className="btn"><span className="icon help-icon"></span></button>
+                            <button className="btn btn-icon"><span className="help-icon"></span></button>
                         </Header>
                         <Content>
                             { children }
                         </Content>
+                        <Footer>
+                            { buttons }
+                        </Footer>
                     </Container>
                 </Overlay>
             ) : null

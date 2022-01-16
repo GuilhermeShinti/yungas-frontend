@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import editIcon from "../../assets/icon-edit.svg";
+import deleteIcon from "../../assets/icon-delete.svg";
 
 
 export const Container = styled.section`
@@ -70,17 +72,25 @@ export const Container = styled.section`
                             justify-content: end;
 
                             button {
-                                display: flex;
+                                /* display: flex;
                                 align-items: center;
                                 background: none;
                                 border: 1px solid transparent;
                                 padding: 4px 8px;
-                                border-radius: 5px;
+                                border-radius: 5px; */
 
                                 transition: border 0.5s;
                                 &:hover {
                                     border: 1px solid #c3c3c3;
                                     /* border-radius: 5px; */
+                                }
+
+                                .icon-delete {
+                                    background: url(${deleteIcon}) no-repeat center;
+                                }
+
+                                .icon-edit {
+                                    background: url(${editIcon}) no-repeat center;
                                 }
                             }
                         }

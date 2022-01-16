@@ -45,8 +45,6 @@ export const Header = styled.div`
         }
     }
 
-
-
     .title {
         font-weight: 600;
         font-size: 600;
@@ -54,6 +52,14 @@ export const Header = styled.div`
 `;
 
 export const Content = styled.div`
+    input, textarea {
+        margin-bottom: 10px;
+    }
+`;
 
+export const Footer = styled.div`
+    position: sticky;
+    top: 100vh;
+    justify-content: space-between;
 `;
 
