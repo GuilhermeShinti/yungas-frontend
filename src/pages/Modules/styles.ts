@@ -44,6 +44,97 @@ export const Container = styled.section`
 
 
     }
+
+    ul.modules-list {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 12px;
+
+        li {
+            display: flex;
+            flex-direction: column;
+            background: #F5F9F9;
+            max-width: 292px;
+            filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15));
+            border-radius: 5px;
+
+            &.card {
+                img {
+                    height: 100px;
+                    background: #ddd;
+                }
+
+                .card-content {
+                    padding: 15px;
+                }
+
+                .card-header {
+                    justify-content: space-between;
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 5px;
+                }
+
+                .card-body {
+                    height: 100px;
+                }
+                .card-footer {
+                    justify-content: space-between;
+                    display: flex;
+                    align-items: center;
+
+                    span {
+                        color: #fff;
+                        border-radius: 15px;
+                        padding: 5px 15px;
+                        font-size: 14px;      
+                        align-self: end;
+
+
+                        &.enabled {
+                            background: #86C51F;
+
+                            &:after {
+                                content: 'HABILITADO';
+                            }
+
+                            @media(max-width: 800px) {
+                                height: 25px;
+                                width: 25px;
+                                border-radius: 50%;
+                                padding: 2px 10px;
+
+                                &:after {
+                                    content: '';
+                                }
+                            }
+                        }
+
+
+                        &.disabled {
+                            background: #EC3F5F;
+
+                            &:after {
+                                content: 'DESABILITADO';
+                            }
+
+                            @media(max-width: 800px) {
+                                height: 25px;
+                                width: 25px;
+                                border-radius: 50%;
+                                padding: 2px 10px;
+
+                                &:after {
+                                    content: '';
+                                }
+                            }
+                        }
+                    }                    
+                }
+            }
+        }
+
+    }
 `;
 
 export const Content = styled.div`
