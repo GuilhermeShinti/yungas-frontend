@@ -5,7 +5,7 @@ import { Modal } from "../../components/Modal";
 import { Container } from "./styles"
 
 
-export function Modules() {
+export function Classes() {
     const [showModal, setShowModal] = useState(false);
     const [isEdit, setEdit] = useState<boolean>(false);
 
@@ -15,13 +15,13 @@ export function Modules() {
     
     return (
         <>
-            <Modal title={`${isEdit ? "Editar" : "Novo"} Módulo`} showModal={showModal} setShowModal={setShowModal} >
+            <Modal title={`${isEdit ? "Editar" : "Novo"} Aula`} showModal={showModal} setShowModal={setShowModal} >
                 <Input type="text" id="course-id" label="Id" hidden={true} value={id} onChange={(e) => setId(e.target.valueAsNumber)}></Input>
                 <Input type="text" id="course-name" label="Nome" value={name} onChange={(e) => setName(e.target.value)}></Input>
-                <TextArea id="course-description" label="Descrição" value={description}  onChange={(e) => setDescription(e.target.value)}></TextArea>
+                <TextArea id="course-description" label="Conteúdo" value={description}  onChange={(e) => setDescription(e.target.value)}></TextArea>
             </Modal>   
             <Container>
-                <button className="btn button-blue" onClick={() => setShowModal(true)}>NOVO MÓDULO</button>
+                <button className="btn button-blue" onClick={() => setShowModal(true)}>NOVA AULA</button>
             </Container>     
         </>
 

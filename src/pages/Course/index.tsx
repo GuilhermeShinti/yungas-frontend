@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-export function Courses() {
+export function Course() {
     return (
         <Outlet />
     )
