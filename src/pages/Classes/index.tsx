@@ -9,10 +9,10 @@ interface Modules {
     name: string;
     description: string;
     status: boolean;
-    classes: Classes[]
+    classes: Class[]
 }
 
-interface Classes {
+interface Class {
     id: number;
     name: string;
     description: string;
@@ -28,6 +28,23 @@ export function Classes() {
     const [id, setId] = useState<number>(0);
     const [name, setName] = useState<string>("");
     const [description, setDescription] = useState<string>("");
+
+    const handleEdit = (classe: Class) => {
+        setEdit(true);
+        setShowModal(true);
+        setId(classe.id);
+        setName(classe.name);
+        setDescription(classe.description);
+    }
+
+    useEffect(() => {
+        if (!showModal) {
+            setEdit(false);
+            setId(0);
+            setName("");
+            setDescription("");
+        }
+    }, [showModal])
 
     useEffect(() => {
         const modulesData : Modules[] = [
@@ -97,7 +114,7 @@ export function Classes() {
             <Modal title={`${isEdit ? "Editar" : "Novo"} Aula`} showModal={showModal} setShowModal={setShowModal} >
                 <Input type="text" id="course-id" label="Id" hidden={true} value={id} onChange={(e) => setId(e.target.valueAsNumber)}></Input>
                 <Input type="text" id="course-name" label="Nome" value={name} onChange={(e) => setName(e.target.value)}></Input>
-                <TextArea id="course-description" label="Conteúdo" value={description}  onChange={(e) => setDescription(e.target.value)}></TextArea>
+                <TextArea id="course-description" label="Conteúdo" value={description} onChange={(e) => setDescription(e.target.value)}></TextArea>
             </Modal>   
             <Container>
                 <header>
@@ -116,7 +133,7 @@ export function Classes() {
                                                     
                                                     <span>{cls.name}</span>
                                                     <div className="action">
-                                                        <button className="btn btn-icon"><span className="icon-edit"></span></button>
+                                                        <button className="btn btn-icon" onClick={() => handleEdit(cls)}><span className="icon-edit"></span></button>
                                                         <button className="btn btn-icon"><span className="icon-delete"></span></button>
                                                     </div>
                                                 </li>
