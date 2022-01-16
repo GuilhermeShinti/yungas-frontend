@@ -1,11 +1,19 @@
 import { createGlobalStyle } from 'styled-components';
+// import { Icons } from './icons';
+import editIcon from "../assets/icon-edit.svg";
+import deleteIcon from "../assets/icon-delete.svg";
+import closeIcon from "../assets/icon-close.svg";
+import helpIcon from "../assets/icon-help.svg";
 
 export const GlobalStyle = createGlobalStyle`
+
+
+
     :root {
         --background: #ffffff;
         --green: #86C51F;
         --red: #EC3F5F;
-        --blue: #1DBAD3;;
+        --blue: #1DBAD3;
     }
 
     * {
@@ -31,6 +39,10 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: 400;
     }
 
+    ul > li {
+        list-style: none;
+    }
+
     .btn {
         background: none;
         border: none;
@@ -46,9 +58,15 @@ export const GlobalStyle = createGlobalStyle`
 
     .btn-icon > span {
         background-position: center;
+        background-repeat: no-repeat;
         display: block;
         height: 30px;
         width: 30px;
+
+        &.icon-delete { background-image: url(${deleteIcon}); }
+        &.icon-edit { background-image: url(${editIcon}); }
+        &.icon-close { background-image: url(${closeIcon}); }
+        &.icon-help { background-image: url(${helpIcon}); }
     }
 
     .button-green {
@@ -65,4 +83,6 @@ export const GlobalStyle = createGlobalStyle`
         background: var(--blue);
         color: #fff;
     }
+
+
 `;

@@ -77,13 +77,13 @@ export const Container = styled.section`
                                     /* border-radius: 5px; */
                                 }
 
-                                .icon-delete {
+                                /* .icon-delete {
                                     background: url(${deleteIcon}) no-repeat center;
                                 }
 
                                 .icon-edit {
                                     background: url(${editIcon}) no-repeat center;
-                                }
+                                } */
                             }
                         }
                     }

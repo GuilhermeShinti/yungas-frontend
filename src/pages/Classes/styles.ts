@@ -1,4 +1,8 @@
 import styled from 'styled-components';
+import bookIcon from '../../assets/icon-book.svg';
+import arrowDownIcon from '../../assets/icon-arrow-down.svg';
+import arrowUpIcon from '../../assets/icon-arrow-up.svg';
+
 
 export const Container = styled.section`
     padding: 20px;
@@ -9,40 +13,91 @@ export const Container = styled.section`
         justify-content: space-between;
         margin-bottom: 40px;
         height: 40px;
+    }
 
-        .preview-mode {
-            width: 100%;
-            border-bottom: 2px solid #1DBAD3;
-
-            button {
-                /* padding: 5px 40px; */
-                width: 200px;
-                background: none;
-                border: none;
+    ul.module-list {
+        li {
+            &.module-item {
+                background: #F5F9F9;
+                margin-bottom: 10px;
+                border-radius: 5px;
                 font-weight: 600;
-                height: 100%;
 
-                &.modules {
-                    border-radius: 5px 0 0 0;
-                }
+                details {
+                    &[open]> summary::after {
+                        content: url(${arrowUpIcon});
+                    }
 
-                &.class {
-                    border-radius: 0 5px 0 0;
-                }
+                    summary {
+                        height: 50px;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        list-style: none;
+                        padding: 10px 15px;
+                        cursor: pointer;
 
-                &.active {
-                    background: #1DBAD3;
-                    color: #fff;
-                }
+                        &:after {
+                            content: url(${arrowDownIcon});
+                        }
 
-                &.deactive {
-                    background: #DEE2E6;
-                    color: #333333;
+                        span.disabled {
+                            margin-left: 20px;
+                            padding: 5px 20px;
+                            height: 25px;
+                            font-size: 14px;
+                            font-weight: 400;
+                            border-radius: 50px;
+
+                            &:after {
+                                content: 'DESABILITADO';
+                            }
+
+                            @media(max-width: 800px) {
+                                height: 25px;
+                                width: 20px;
+                                border-radius: 50%;
+                                padding: 2px 10px;
+
+                                &:after {
+                                    content: '';
+                                }
+                            }
+                        }
+                    }       
                 }
             }
         }
 
+    }
 
+    ul.classes-list {
+        li.class-item {
+            height: 41px;
+            display: flex;
+            align-items: center;
+            padding: 5px 15px;
+            font-weight: 400;
+            justify-content: space-between;
+
+            > span {
+                &:before {
+                    margin-right: 10px;
+                    content: url(${bookIcon});
+                    padding: 3px 0 0 0;
+                    vertical-align: -20%;
+                }
+            }
+
+            &:nth-child(odd) {
+                background: #FDF8F8;
+            }
+            &:nth-child(even) {
+                background: #FCFDF8;
+            }
+
+
+        }
     }
 `;
 

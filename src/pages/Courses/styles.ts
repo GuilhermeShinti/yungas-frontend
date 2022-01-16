@@ -1,7 +1,4 @@
 import styled from "styled-components";
-import editIcon from "../../assets/icon-edit.svg";
-import deleteIcon from "../../assets/icon-delete.svg";
-
 
 export const Container = styled.section`
     padding: 20px;
@@ -75,14 +72,6 @@ export const Container = styled.section`
                                 &:hover {
                                     border: 1px solid #c3c3c3;
                                     /* border-radius: 5px; */
-                                }
-
-                                .icon-delete {
-                                    background: url(${deleteIcon}) no-repeat center;
-                                }
-
-                                .icon-edit {
-                                    background: url(${editIcon}) no-repeat center;
                                 }
                             }
                         }

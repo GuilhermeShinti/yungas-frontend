@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import { Icons } from "../../styles/icons";
 import closeIcon from "../../assets/icon-close.svg";
 import helpIcon from "../../assets/icon-help.svg";
+
 
 export const Overlay = styled.div`
     background: #0000007a;
@@ -18,9 +20,14 @@ export const Container = styled.div`
     height: 100%;
     background: #f9f9f9;
     max-width: 580px;
-    /* min-width: 320px; */
+    width: 100%;
     right: 0;
     padding: 20px;
+
+    span {
+        &.icon-close { background: url(${closeIcon}) no-repeat; }
+        &.icon-help { background: url(${helpIcon}) no-repeat; }        
+    }
 `;
 
 export const Header = styled.div`
@@ -32,20 +39,6 @@ export const Header = styled.div`
 
     .title {
         text-align: center;
-    }
-
-    span {
-
-        &.close-icon {
-            background: url(${closeIcon}) no-repeat;
-        }
-
-        &.help-icon {
-            background: url(${helpIcon}) no-repeat;
-        }
-    }
-
-    .title {
         font-weight: 600;
         font-size: 600;
     }
