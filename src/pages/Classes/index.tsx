@@ -7,6 +7,8 @@ import { Container } from "./styles"
 import { Module } from "../../interfaces/Modules";
 import { Class } from "../../interfaces/Class";
 
+import { api } from "../../services/api";
+
 export function Classes() {
     const [showModal, setShowModal] = useState(false);
     const [isEdit, setEdit] = useState<boolean>(false);
@@ -16,13 +18,9 @@ export function Classes() {
     const [name, setName] = useState<string>("");
     const [description, setDescription] = useState<string>("");
 
-    const handleEdit = (classe: Class) => {
-        setEdit(true);
-        setShowModal(true);
-        setId(classe.id);
-        setName(classe.name);
-        setDescription(classe.description);
-    }
+    useEffect(() => {
+        loadClasses();
+    }, [])
 
     useEffect(() => {
         if (!showModal) {
@@ -33,70 +31,19 @@ export function Classes() {
         }
     }, [showModal])
 
-    useEffect(() => {
-        const modulesData : Module[] = [
-            {
-                id: 1,
-                name: "1. Introdução",
-                description: "Curso de Svelte",
-                image: "images/course1.png",
-                status: true,
-                classes: [
-                    {
-                        id: 1,
-                        name: "1. Primeira aula",
-                        description: "Curso de Svelte"
-                    },
-                    {
-                        id: 2,
-                        name: "2. Segunda aula",
-                        description: "Curso de Svelte"
-                    },
-                    {
-                        id: 3,
-                        name: "3. Terceira aula",
-                        description: "Curso de Svelte"
-                    },
-                    {
-                        id: 4,
-                        name: "4. Quarta aula",
-                        description: "Curso de Svelte"
-                    }
-                ]
-            },
-            {
-                id: 2,
-                name: "1. Programação Funcional",
-                description: "Curso de Svelte",
-                image: "images/course1.png",
-                status: false,
-                classes: [
-                    {
-                        id: 1,
-                        name: "1. Primeira aula",
-                        description: "Curso de Svelte"
-                    },
-                    {
-                        id: 2,
-                        name: "2. Segunda aula",
-                        description: "Curso de Svelte"
-                    },
-                    {
-                        id: 3,
-                        name: "3. Terceira aula",
-                        description: "Curso de Svelte"
-                    },
-                    {
-                        id: 4,
-                        name: "4. Quarta aula",
-                        description: "Curso de Svelte"
-                    }
-                ]
-            }
-        ]
+    async function loadClasses() {
+        await api.get("/modules").then(response => {
+            setModules(response.data);
+        });
+    }
 
-        setModules(modulesData);
-    }, [])
+    const handleEdit = (classe: Class) => {
+        setEdit(true);
+        setShowModal(true);
+        setId(classe.id);
+        setName(classe.name);
+        setDescription(classe.description);
+    }
     
     return (
         <>

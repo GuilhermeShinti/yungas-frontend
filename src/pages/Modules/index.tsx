@@ -7,6 +7,8 @@ import { Container } from "./styles"
 import { Module } from "../../interfaces/Modules";
 import { Class } from "../../interfaces/Class";
 
+import { api } from "../../services/api";
+
 export function Modules() {
     const [showModal, setShowModal] = useState(false);
     const [isEdit, setEdit] = useState<boolean>(false);
@@ -17,69 +19,14 @@ export function Modules() {
     const [description, setDescription] = useState<string>("");
 
     useEffect(() => {
-        const modulesData : Module[] = [
-            {
-                id: 1,
-                name: "1. Introdução",
-                image: "/images/module-card.png",
-                description: "Curso de Svelte",
-                status: true,
-                classes: [
-                    {
-                        id: 1,
-                        name: "1. Primeira aula",
-                        description: "Curso de Svelte"
-                    },
-                    {
-                        id: 2,
-                        name: "2. Segunda aula",
-                        description: "Curso de Svelte"
-                    },
-                    {
-                        id: 3,
-                        name: "3. Terceira aula",
-                        description: "Curso de Svelte"
-                    },
-                    {
-                        id: 4,
-                        name: "4. Quarta aula",
-                        description: "Curso de Svelte"
-                    }
-                ]
-            },
-            {
-                id: 2,
-                name: "1. Programação Funcional",
-                image: "/images/module-card.png",
-                description: "Curso de Svelte",
-                status: false,
-                classes: [
-                    {
-                        id: 1,
-                        name: "1. Primeira aula",
-                        description: "Curso de Svelte"
-                    },
-                    {
-                        id: 2,
-                        name: "2. Segunda aula",
-                        description: "Curso de Svelte"
-                    },
-                    {
-                        id: 3,
-                        name: "3. Terceira aula",
-                        description: "Curso de Svelte"
-                    },
-                    {
-                        id: 4,
-                        name: "4. Quarta aula",
-                        description: "Curso de Svelte"
-                    }
-                ]
-            }
-        ]
-
-        setModules(modulesData);
+        loadModules();
     }, []);
+
+    async function loadModules() {
+        await api.get("/modules").then(response => {
+            setModules(response.data);
+        });
+    }
 
     const handleEdit = (classe: Class) => {
         setEdit(true);
@@ -122,7 +69,8 @@ export function Modules() {
                                     </div>
                                     <div className="card-body">
                                         <p>{module.description}</p>
-        
+                                        <br />
+                                        <p>Aulas: {module.classes.length}</p>
                                     </div>
                                     <div className="card-footer">
                                         <span className="button-green enabled"></span>

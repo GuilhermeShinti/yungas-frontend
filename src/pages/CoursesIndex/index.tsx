@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Container } from "./styles";
+
 import { Modal } from "../../components/Modal";
 import { Input } from "../../components/Form/Input";
 import { TextArea } from "../../components/Form/Textarea";
 
 import { Course } from "../../interfaces/Course";
+
+import { api } from "../../services/api";
 
 export function CoursesIndex() {
     const [showModal, setShowModal] = useState(false);
@@ -20,40 +23,7 @@ export function CoursesIndex() {
     const [endDate, setEndDate] = useState<string>("");
 
     useEffect(() => {
-        const coursesData: Course[] = [
-            {
-                id: 1,
-                name: "Curso de Svelte",
-                description: "Um curso para introdução ao Svelte com...",
-                duration: 10,
-                image: "images/course1.png",
-                startDate: '2022-01-19T02:24:11.657Z',
-                endDate: '2022-01-19T02:24:11.657Z',
-                status: "HABILITADO"
-            },
-            {
-                id: 2,
-                name: "Curso de React",
-                description: "Como criar aplicativos usando React...",
-                duration: 20,
-                image: "images/course2.png",
-                startDate: '2022-01-19T02:24:11.657Z',
-                endDate: '2022-01-19T02:24:11.657Z',
-                status: "DESABILITADO"
-            },
-            {
-                id: 3,
-                name: "Curso de React",
-                description: "Como criar aplicativos usando React...",
-                duration: 30,
-                image: "images/course2.png",
-                startDate: '2022-01-19T02:24:11.657Z',
-                endDate: '2022-01-19T02:24:11.657Z',
-                status: "HABILITADO"
-            }
-        ];
-
-        setCourses(coursesData);
+        loadCourses();
     }, []);
 
     useEffect(() => {
@@ -67,6 +37,12 @@ export function CoursesIndex() {
             setDuration(0);
         }
     }, [showModal])
+
+    async function loadCourses() {
+        await api.get("/treinamentos").then(response => {
+            setCourses(response.data);
+        });
+    }
 
     const handleEdit = (course: Course) => {
         setEdit(true);
@@ -114,7 +90,7 @@ export function CoursesIndex() {
                                         <p>{course.description}</p>
                                     </div>
                                     <div className="course-status">
-                                        <span className={`status ${course.status === "HABILITADO" ? "enabled": "disabled"}`}></span>
+                                        <span className={`status ${course.enabled ? "enabled": "disabled"}`}></span>
                                         <div className="action">
                                             <button className="btn btn-icon" onClick={() => handleEdit(course)}><span className="icon-edit"></span></button>
                                             <button className="btn btn-icon" onClick={() => handleDelete(course)}><span className="icon-delete"></span></button>

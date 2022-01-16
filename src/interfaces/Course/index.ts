@@ -6,5 +6,5 @@ export interface Course {
     image: string;
     startDate: string;
     endDate: string;
-    status: string;
+    enabled: string;
 }
