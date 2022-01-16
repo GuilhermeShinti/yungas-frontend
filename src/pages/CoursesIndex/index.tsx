@@ -66,6 +66,7 @@ export function CoursesIndex() {
 
     useEffect(() => {
         if (!showModal) {
+            setEdit(false);
             setId(0);
             setName("");
             setDescription("");
