@@ -4,26 +4,13 @@ import { TextArea } from "../../components/Form/Textarea";
 import { Modal } from "../../components/Modal";
 import { Container } from "./styles"
 
-interface Modules {
-    id: number;
-    name: string;
-    description: string;
-    status: boolean;
-    classes: Class[]
-}
-
-interface Class {
-    id: number;
-    name: string;
-    description: string;
-}
-
-
+import { Module } from "../../interfaces/Modules";
+import { Class } from "../../interfaces/Class";
 
 export function Classes() {
     const [showModal, setShowModal] = useState(false);
     const [isEdit, setEdit] = useState<boolean>(false);
-    const [modules, setModules] = useState<Modules[]>([]);
+    const [modules, setModules] = useState<Module[]>([]);
 
     const [id, setId] = useState<number>(0);
     const [name, setName] = useState<string>("");
@@ -47,11 +34,12 @@ export function Classes() {
     }, [showModal])
 
     useEffect(() => {
-        const modulesData : Modules[] = [
+        const modulesData : Module[] = [
             {
                 id: 1,
                 name: "1. Introdução",
                 description: "Curso de Svelte",
+                image: "images/course1.png",
                 status: true,
                 classes: [
                     {
@@ -80,6 +68,7 @@ export function Classes() {
                 id: 2,
                 name: "1. Programação Funcional",
                 description: "Curso de Svelte",
+                image: "images/course1.png",
                 status: false,
                 classes: [
                     {

@@ -5,16 +5,7 @@ import { Modal } from "../../components/Modal";
 import { Input } from "../../components/Form/Input";
 import { TextArea } from "../../components/Form/Textarea";
 
-interface Course {
-    id: number;
-    name: string;
-    description: string;
-    duration: number;
-    image: string;
-    startDate: string;
-    endDate: string;
-    status: string;
-}
+import { Course } from "../../interfaces/Course";
 
 export function CoursesIndex() {
     const [showModal, setShowModal] = useState(false);
