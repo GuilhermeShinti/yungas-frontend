@@ -108,7 +108,7 @@ export function Courses() {
             <Container>
                 <header>
                     <h2>SEUS TREINAMENTOS</h2>
-                    <button className="btn" onClick={() => setShowModal(true)}>NOVO TREINAMENTO</button>
+                    <button className="btn button-blue" onClick={() => setShowModal(true)}>NOVO TREINAMENTO</button>
                 </header>
                 <ul>
                     {

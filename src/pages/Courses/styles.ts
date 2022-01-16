@@ -11,14 +11,6 @@ export const Container = styled.section`
         width: 100%;
         justify-content: space-between;
         margin-bottom: 40px;
-
-        button {
-            background: #1DBAD3;
-            border: none;
-            border-radius: 5px;
-            color: #fff;
-            padding: 0 30px;
-        }
     }
 
     ul {

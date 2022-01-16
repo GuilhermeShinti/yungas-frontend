@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
         --background: #ffffff;
         --green: #86C51F;
         --red: #EC3F5F;
+        --blue: #1DBAD3;;
     }
 
     * {
@@ -57,6 +58,11 @@ export const GlobalStyle = createGlobalStyle`
 
     .button-red {
         background: var(--red);
+        color: #fff;
+    }
+
+    .button-blue {
+        background: var(--blue);
         color: #fff;
     }
 `;
