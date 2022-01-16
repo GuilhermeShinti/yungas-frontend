@@ -121,7 +121,7 @@ export function CoursesIndex() {
                                         <p>{course.description}</p>
                                     </div>
                                     <div className="course-status">
-                                        <span className={`status ${course.status === "HABILITADO" ? "enabled": "disabled"}`}>{course.status}</span>
+                                        <span className={`status ${course.status === "HABILITADO" ? "enabled": "disabled"}`}></span>
                                         <div className="action">
                                             <button className="btn btn-icon" onClick={() => handleEdit(course)}><span className="icon-edit"></span></button>
                                             <button className="btn btn-icon" onClick={() => handleDelete(course)}><span className="icon-delete"></span></button>

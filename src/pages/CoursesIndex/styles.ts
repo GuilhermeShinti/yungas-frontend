@@ -44,19 +44,52 @@ export const Container = styled.section`
                         display: flex;
                         flex-direction: column;
 
-                        .status {
+                        span.status {
                             color: #fff;
                             border-radius: 15px;
                             padding: 5px 15px;
-                            font-size: 14px;
-                        }
+                            font-size: 14px;      
+                            align-self: end;
 
-                        .enabled {
-                            background: #86C51F;
-                        }
 
-                        .disabled {
-                            background: #EC3F5F;
+                            &.enabled {
+                                background: #86C51F;
+
+                                &:after {
+                                    content: 'HABILITADO';
+                                }
+
+                                @media(max-width: 800px) {
+                                    height: 25px;
+                                    width: 25px;
+                                    border-radius: 50%;
+                                    padding: 2px 10px;
+
+                                    &:after {
+                                        content: '';
+                                    }
+                                }
+                            }
+
+
+                            &.disabled {
+                                background: #EC3F5F;
+
+                                &:after {
+                                    content: 'DESABILITADO';
+                                }
+
+                                @media(max-width: 800px) {
+                                    height: 25px;
+                                    width: 25px;
+                                    border-radius: 50%;
+                                    padding: 2px 10px;
+
+                                    &:after {
+                                        content: '';
+                                    }
+                                }
+                            }
                         }
 
                         .action {
