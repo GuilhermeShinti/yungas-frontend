@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import { Container } from "./styles";
 
 export function Course() {
@@ -6,8 +6,8 @@ export function Course() {
         <>
             <Container>
                 <header>
-                    <div className="active">Módulos</div>
-                    <div>Aulas</div>                    
+                    <Link to="modulos"><div className="active">Módulos</div></Link>
+                    <Link to="aulas"><div>Aulas</div></Link>
                 </header>
             </Container>
             <Outlet />

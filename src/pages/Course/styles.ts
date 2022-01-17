@@ -7,29 +7,36 @@ export const Container = styled.div`
         display: flex;
         border-bottom: 2px solid #1DBAD3;
 
-        div {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        a {
+            text-decoration: none;
             max-width: 200px;
             width: 100%;
-            height: 40px;
-            background: #DEE2E6;
-            border-radius: 5px 5px 0 0;
-            font-weight: 600;
 
-            &:nth-child(1) {
+            &:nth-child(1) > div {
                 border-radius: 5px 0 0 0;
             }
-            &:nth-child(2) {
+
+            &:nth-child(2) > div {
                 border-radius: 0 5px 0 0;
             }
             
-            &.active {
-                background: #1DBAD3;
-                color: #fff;
+            > div {
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #000;
+                background: #DEE2E6;
+                font-weight: 600;
+                
+                &.active {
+                    background: #1DBAD3;
+                    color: #fff;
+                }
             }
         }
+
+
     }
 `
 
