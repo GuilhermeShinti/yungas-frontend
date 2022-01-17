@@ -4,9 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { makeServer } from "./services/server"
 import App from './App';
 
-if (process.env.NODE_ENV === "development") {
-    makeServer({ environment: "development" })
-  }
+makeServer({ environment: "test" });
 
 ReactDOM.render(
     <BrowserRouter>
