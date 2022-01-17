@@ -25,4 +25,14 @@ export const Container = styled.nav`
             }
         }
     }
+
+    @media(max-width: 800px) {
+        height: 72px;
+        position: absolute;
+
+        ul > li:nth-child(n+2) {
+            display: none;
+        }
+
+    }
 `;
