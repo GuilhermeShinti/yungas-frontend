@@ -51,7 +51,7 @@ export function Modules() {
                                         <p>Aulas: {module.classes?.length ?? 0}</p>
                                     </div>
                                     <div className="card-footer">
-                                        <span className="button-green enabled"></span>
+                                        <span className={`${module.status ? "button-green enabled" : "button-red disabled"}`}></span>
                                         <button className="btn btn-icon" onClick={() => moduleController.handleDelete(module)}><span className="icon-delete"></span></button>
                                     </div>
                                 </div>

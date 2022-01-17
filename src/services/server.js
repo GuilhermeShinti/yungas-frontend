@@ -113,6 +113,7 @@ export function makeServer({ environment = 'test' }) {
             this.put("/modulos/:id", (schema, request) => {
                 const id = request.params.id;
                 const module = JSON.parse(request.requestBody);
+                delete module.classes;
                 schema.modules.find(id).update(module);
                 return schema.modules.all();
             });

@@ -15,10 +15,6 @@ export const useModuleController = () => {
         description: "",
     }));
 
-    const [id, setId] = useState<number>(0);
-    const [name, setName] = useState<string>("");
-    const [description, setDescription] = useState<string>("");
-
     useEffect(() => {
         loadModules();
     }, []);
@@ -26,9 +22,11 @@ export const useModuleController = () => {
     useEffect(() => {
         if (!showModal) {
             setEdit(false);
-            setId(0);
-            setName("");
-            setDescription("");
+            setModule(Object.assign({
+                id: 0,
+                name: "",
+                description: "",
+            }))
         }
     }, [showModal]);
 
