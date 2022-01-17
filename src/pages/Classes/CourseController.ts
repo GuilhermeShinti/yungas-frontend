@@ -4,9 +4,11 @@ import { Module } from "../../interfaces/Modules";
 import { Class } from "../../interfaces/Class";
 
 import { api } from "../../services/api";
+import { useParams } from "react-router-dom";
 
 
 export const useCourseController = () => {
+    let { courseId } = useParams();
     const [showModal, setShowModal] = useState(false);
     const [isEdit, setEdit] = useState<boolean>(false);
     const [modules, setModules] = useState<Module[]>([]);
@@ -34,7 +36,7 @@ export const useCourseController = () => {
     }, [showModal]);
 
     async function loadClasses() {
-        await api.get("/modulos").then(response => {
+        await api.get(`/treinamentos/${courseId}`).then(response => {
             setModules(response.data.modules);
         });
     }
