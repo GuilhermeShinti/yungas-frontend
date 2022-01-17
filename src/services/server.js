@@ -20,12 +20,6 @@ export function makeServer({ environment = 'test' }) {
             }),
         },
         serializers: {
-            // serializeIds: 'included',
-            // module: Serializer.extend({
-            //     include(request, resource) {
-            //         return Object.keys(this.schema.associationsFor(resource?.modelName));
-            //     }
-            // }),
             application: AppSerializer,
             module: AppSerializer.extend({
                 include: ['classes'],
