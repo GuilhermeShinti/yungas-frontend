@@ -66,7 +66,7 @@ export function makeServer({ environment = 'test' }) {
         //     }
         // ]
 
-        const classes = server.createList("class", 5);
+        // const classes = server.createList("class", 5);
 
         server.create("module", { id: 1, name: "1. Introdução", description: "Introdução ao Svelte", status: true  })
         server.create("module", { id: 2, name: "2. Programação Funcional", description: "Introdução ao Svelte", status: true })
@@ -113,11 +113,10 @@ export function makeServer({ environment = 'test' }) {
         
         let newModuleId = 5;
         this.post("/modulos", (schema, request) => {
-            let module = JSON.parse(request.requestBody);
+            const module = JSON.parse(request.requestBody);
             module.id = newModuleId++;
-    
-            module.id = newCourseId++;
-            module.image = "images/course1.png";
+            module.image = "images/module-card.png";
+            module.status = true;
             schema.modules.create(module);
             return schema.modules.all();
         });

@@ -57,6 +57,7 @@ export const Container = styled.section`
             max-width: 292px;
             filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15));
             border-radius: 5px;
+            width: 100%;
 
             &.card {
                 img {

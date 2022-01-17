@@ -1,89 +1,49 @@
-import { useEffect, useState } from "react";
 import { Input } from "../../components/Form/Input";
 import { TextArea } from "../../components/Form/Textarea";
 import { Modal } from "../../components/Modal";
 import { Container } from "./styles"
 
-import { Module } from "../../interfaces/Modules";
-import { Class } from "../../interfaces/Class";
-
-import { api } from "../../services/api";
+import { useModuleController } from "./ModuleController";
 
 export function Modules() {
-    const [showModal, setShowModal] = useState(false);
-    const [isEdit, setEdit] = useState<boolean>(false);
-    const [modules, setModules] = useState<Module[]>([]);
+    const moduleController = useModuleController();
+    const isEdit = moduleController.isEdit;
+    const modules = moduleController.modules;
+    const module = moduleController.module;
 
-    const [id, setId] = useState<number>(0);
-    const [name, setName] = useState<string>("");
-    const [description, setDescription] = useState<string>("");
-
-    useEffect(() => {
-        loadModules();
-    }, []);
-
-    useEffect(() => {
-        if (!showModal) {
-            setEdit(false);
-            setId(0);
-            setName("");
-            setDescription("");
-        }
-    }, [showModal]);
-
-    async function loadModules() {
-        await api.get("/modulos").then(response => {
-            setModules(response.data.modules);
-        });
-    }
-
-    const handleEdit = (classe: Class) => {
-        setEdit(true);
-        setShowModal(true);
-        setId(classe.id);
-        setName(classe.name);
-        setDescription(classe.description);
-    }
-
-    const handleDelete = async (module: Module) => {
-        await api.delete(`/modulos/${module.id}`).then(response => {
-            setModules(response.data.modules);
-        });
-    }
-    
     return (
         <>
             <Modal 
                 title={`${isEdit ? "Editar" : "Novo"} Módulo`} 
-                showModal={showModal} 
-                setShowModal={setShowModal}
+                showModal={moduleController.showModal} 
+                setShowModal={moduleController.setShowModal}
                 buttons={
                     isEdit ? [
-                        // <button className="btn button-green" onClick={() => handleSaveCourse(course)}>Salvar</button>,
-                        // <button className="btn button-red" onClick={() => handleDisableCourse(course)}>Desabilitar</button>,
+                        <button className="btn button-green" onClick={() => moduleController.handleSaveModule(module)}>Salvar</button>,
+                        <button className="btn button-red" onClick={() => moduleController.handleDisableModule(module)}>Desabilitar</button>,
                     ] : [
-                        // <button className="btn button-green" onClick={() => handleNewCourse(course)}>Criar</button>
+                        <button className="btn button-green" onClick={() => moduleController.handleNewCourse(module)}>Criar</button>
                     ]
                 }
             >
-                <Input type="text" id="course-id" label="Id" hidden={true} value={id} onChange={(e) => setId(e.target.valueAsNumber)}></Input>
-                <Input type="text" id="course-name" label="Nome" value={name} onChange={(e) => setName(e.target.value)}></Input>
-                <TextArea id="course-description" label="Descrição" value={description}  onChange={(e) => setDescription(e.target.value)}></TextArea>
+                <Input type="text" id="course-id" label="Id" hidden={true} value={module.id} onChange={(e) => moduleController.setModule({...module, id: e.target.valueAsNumber})}></Input>
+                <Input type="text" id="course-name" label="Nome" value={module.name} onChange={(e) => moduleController.setModule({...module, name: e.target.value})}></Input>
+                <TextArea id="course-description" label="Descrição" value={module.description}  onChange={(e) => moduleController.setModule({...module, description: e.target.value})}></TextArea>
             </Modal>   
             <Container>
                 <header>
-                    <button className="btn button-blue" onClick={() => setShowModal(true)}>NOVO MÓDULO</button>
+                    <button className="btn button-blue" onClick={() => moduleController.setShowModal(true)}>NOVO MÓDULO</button>
                 </header>
                 <ul className="modules-list">
                     {
-                        modules.map(module => (
+                        modules?.map(module => (
                             <li key={module.id} className="card">
-                                <img src={`${module.image}`} alt="course" />
+                                <img src={`${module.image}`} alt={`${module.name}`} />
                                 <div className="card-content">
                                     <div className="card-header">
                                         
                                         <strong>{module.name}</strong>
-                                        <button className="btn btn-icon" onClick={() => handleEdit(module)}><span className="icon-edit"></span></button>
+                                        <button className="btn btn-icon" onClick={() => moduleController.handleOpenModalToEdit(module)}><span className="icon-edit"></span></button>
                                     </div>
                                     <div className="card-body">
                                         <p>{module.description}</p>
@@ -92,7 +52,7 @@ export function Modules() {
                                     </div>
                                     <div className="card-footer">
                                         <span className="button-green enabled"></span>
-                                        <button className="btn btn-icon" onClick={() => handleDelete(module)}><span className="icon-delete"></span></button>
+                                        <button className="btn btn-icon" onClick={() => moduleController.handleDelete(module)}><span className="icon-delete"></span></button>
                                     </div>
                                 </div>
                             </li>
