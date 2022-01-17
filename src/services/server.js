@@ -37,9 +37,15 @@ export function makeServer({ environment = 'test' }) {
                 endDate: new Date().toISOString(),
             }),
             module: Factory.extend({
+                id(i) {
+                    return i + 1;
+                },
                 image: "/images/module-card.png"
             }),
             class: Factory.extend({
+                id(i) {
+                    return i + 1;
+                },
                 name(i) {
                     return `Aula ${i + 1}`
                 },
@@ -53,17 +59,34 @@ export function makeServer({ environment = 'test' }) {
             server.create("course", { id: 2, duration: 10, image: "images/course1.png", enabled: true });
             server.create("course", { id: 3, duration: 10, image: "images/course2.png", enabled: false });
 
-            server.create("module", { id: 1, courseId: 1, name: "1. Introdução", description: "Introdução ao Svelte", status: true  })
-            server.create("module", { id: 2, courseId: 1, name: "2. Programação Funcional", description: "Introdução ao Svelte", status: true })
-            server.create("module", { id: 3, courseId: 1, name: "3. Rx.JS", description: "Introdução ao Svelte", status: false })
-            server.create("module", { id: 4, courseId: 1, name: "4. Finalização", description: "Introdução ao Svelte", status: true })
+            server.create("module", { courseId: 1, name: "1. Introdução", description: "Introdução ao Svelte", status: true  })
+            server.create("module", { courseId: 1, name: "2. Programação Funcional", description: "Introdução ao Svelte", status: true })
+            server.create("module", { courseId: 1, name: "3. Rx.JS", description: "Introdução ao Svelte", status: false })
+            server.create("module", { courseId: 1, name: "4. Finalização", description: "Introdução ao Svelte", status: true })
+            server.create("module", { courseId: 2, name: "1. Introdução", description: "Introdução ao Svelte", status: true  })
+            server.create("module", { courseId: 2, name: "2. Programação Funcional", description: "Introdução ao Svelte", status: true })
+            server.create("module", { courseId: 2, name: "3. Rx.JS", description: "Introdução ao Svelte", status: false })
+            server.create("module", { courseId: 3, name: "1. Introdução", description: "Introdução ao React", status: true  })
+            server.create("module", { courseId: 3, name: "4. Finalização", description: "Introdução ao React", status: true })
 
-
-            server.create("class", { id: 1, moduleId: 1, status: true })
-            server.create("class", { id: 2, moduleId: 1, status: true })
-            server.create("class", { id: 3, moduleId: 2, status: true })
-            server.create("class", { id: 4, moduleId: 3, status: false })
-            server.create("class", { id: 5, moduleId: 4, status: true })
+            server.create("class", { moduleId: 1, status: true })
+            server.create("class", { moduleId: 1, status: true })
+            server.create("class", { moduleId: 1, status: true })
+            server.create("class", { moduleId: 2, status: true })
+            server.create("class", { moduleId: 3, status: false })
+            server.create("class", { moduleId: 4, status: true })
+            server.create("class", { moduleId: 4, status: true })
+            server.create("class", { moduleId: 5, status: true })
+            server.create("class", { moduleId: 5, status: true })
+            server.create("class", { moduleId: 5, status: true })
+            server.create("class", { moduleId: 6, status: true })
+            server.create("class", { moduleId: 6, status: true })
+            server.create("class", { moduleId: 7, status: true })
+            server.create("class", { moduleId: 8, status: false })
+            server.create("class", { moduleId: 8, status: true })
+            server.create("class", { moduleId: 8, status: false })
+            server.create("class", { moduleId: 9, status: true })
+            server.create("class", { moduleId: 9, status: true })
 
         },
         routes() {
@@ -71,6 +94,11 @@ export function makeServer({ environment = 'test' }) {
     
             this.get("/treinamentos", (schema) => {
                 return schema.courses.all();
+            });
+
+            this.get("/treinamentos/:id", (schema, request) => {
+                const id = request.params.id;
+                return schema.modules.where({courseId: id});
             });
 
             let newCourseId = 4;

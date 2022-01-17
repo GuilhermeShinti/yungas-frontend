@@ -11,7 +11,7 @@ export function AppRoutes() {
             <Route path="/" element={<Navigate to="treinamentos" />} />
             <Route path="treinamentos" element={<Courses />}>
                 <Route index element={<CoursesIndex />} />
-                <Route path=":id" element={<Course />} >
+                <Route path=":courseId" element={<Course />} >
                     <Route index element={<Modules />} />
                     <Route path="modulos" element={<Modules />} />
                     <Route path="aulas" element={<Classes />} />
