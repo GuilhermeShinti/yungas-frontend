@@ -6,5 +6,5 @@ export interface Module {
     image: string;
     description: string;
     status: boolean;
-    classes: Class[]    
+    classes?: Class[]    
 }

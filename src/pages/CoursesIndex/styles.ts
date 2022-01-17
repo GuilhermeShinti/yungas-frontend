@@ -26,6 +26,11 @@ export const Container = styled.section`
                 width: 100%;
                 min-height: 100px;
 
+                img {
+                    max-width: 170px;
+                    width: 100%;
+                }
+
                 .course-info {
                     display: flex;
                     padding: 15px;

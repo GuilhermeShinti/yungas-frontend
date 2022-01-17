@@ -29,11 +29,11 @@ export function Classes() {
             setName("");
             setDescription("");
         }
-    }, [showModal])
+    }, [showModal]);
 
     async function loadClasses() {
-        await api.get("/modules").then(response => {
-            setModules(response.data);
+        await api.get("/modulos").then(response => {
+            setModules(response.data.modules);
         });
     }
 
@@ -45,6 +45,13 @@ export function Classes() {
         setDescription(classe.description);
     }
     
+
+    const handleDelete = async (classe: Class) => {
+        await api.delete(`/classes/${classe.id}`).then(async response => {
+            await loadClasses();
+        });
+    }
+
     return (
         <>
             <Modal title={`${isEdit ? "Editar" : "Novo"} Aula`} showModal={showModal} setShowModal={setShowModal} >
@@ -64,13 +71,13 @@ export function Classes() {
                                     <summary><div>{module.name}{module.status ? "" : <span className="button-red disabled"></span>}</div></summary>
                                     <ul className="classes-list">
                                         {
-                                            module.classes.map(cls => (
+                                            module.classes?.map(cls => (
                                                 <li key={cls.id} className="class-item"> 
                                                     
                                                     <span>{cls.name}</span>
                                                     <div className="action">
                                                         <button className="btn btn-icon" onClick={() => handleEdit(cls)}><span className="icon-edit"></span></button>
-                                                        <button className="btn btn-icon"><span className="icon-delete"></span></button>
+                                                        <button className="btn btn-icon" onClick={() => handleDelete(cls)}><span className="icon-delete"></span></button>
                                                     </div>
                                                 </li>
                                             ))

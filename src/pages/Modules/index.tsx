@@ -22,9 +22,18 @@ export function Modules() {
         loadModules();
     }, []);
 
+    useEffect(() => {
+        if (!showModal) {
+            setEdit(false);
+            setId(0);
+            setName("");
+            setDescription("");
+        }
+    }, [showModal]);
+
     async function loadModules() {
-        await api.get("/modules").then(response => {
-            setModules(response.data);
+        await api.get("/modulos").then(response => {
+            setModules(response.data.modules);
         });
     }
 
@@ -36,18 +45,27 @@ export function Modules() {
         setDescription(classe.description);
     }
 
-    useEffect(() => {
-        if (!showModal) {
-            setEdit(false);
-            setId(0);
-            setName("");
-            setDescription("");
-        }
-    }, [showModal]);
+    const handleDelete = async (module: Module) => {
+        await api.delete(`/modulos/${module.id}`).then(response => {
+            setModules(response.data.modules);
+        });
+    }
     
     return (
         <>
-            <Modal title={`${isEdit ? "Editar" : "Novo"} Módulo`} showModal={showModal} setShowModal={setShowModal} >
+            <Modal 
+                title={`${isEdit ? "Editar" : "Novo"} Módulo`} 
+                showModal={showModal} 
+                setShowModal={setShowModal}
+                buttons={
+                    isEdit ? [
+                        // <button className="btn button-green" onClick={() => handleSaveCourse(course)}>Salvar</button>,
+                        // <button className="btn button-red" onClick={() => handleDisableCourse(course)}>Desabilitar</button>,
+                    ] : [
+                        // <button className="btn button-green" onClick={() => handleNewCourse(course)}>Criar</button>
+                    ]
+                }
+            >
                 <Input type="text" id="course-id" label="Id" hidden={true} value={id} onChange={(e) => setId(e.target.valueAsNumber)}></Input>
                 <Input type="text" id="course-name" label="Nome" value={name} onChange={(e) => setName(e.target.value)}></Input>
                 <TextArea id="course-description" label="Descrição" value={description}  onChange={(e) => setDescription(e.target.value)}></TextArea>
@@ -65,16 +83,16 @@ export function Modules() {
                                     <div className="card-header">
                                         
                                         <strong>{module.name}</strong>
-                                        <button className="btn btn-icon"  onClick={() => handleEdit(module)}><span className="icon-edit"></span></button>
+                                        <button className="btn btn-icon" onClick={() => handleEdit(module)}><span className="icon-edit"></span></button>
                                     </div>
                                     <div className="card-body">
                                         <p>{module.description}</p>
                                         <br />
-                                        <p>Aulas: {module.classes.length}</p>
+                                        <p>Aulas: {module.classes?.length ?? 0}</p>
                                     </div>
                                     <div className="card-footer">
                                         <span className="button-green enabled"></span>
-                                        <button className="btn btn-icon"><span className="icon-delete"></span></button>
+                                        <button className="btn btn-icon" onClick={() => handleDelete(module)}><span className="icon-delete"></span></button>
                                     </div>
                                 </div>
                             </li>

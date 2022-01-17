@@ -1,3 +1,4 @@
+import React from "react";
 import { useRef } from "react"
 import { Overlay, Container, Header, Content, Footer } from "./styles"
 
@@ -6,7 +7,7 @@ interface ModalProps {
     children: JSX.Element|JSX.Element[];
     showModal: boolean;
     setShowModal: Function;
-    buttons?: JSX.Element|JSX.Element[];
+    buttons?: JSX.Element[];
   }
 
 export function Modal ({ title, children, showModal, setShowModal, buttons }: ModalProps) {
@@ -33,7 +34,13 @@ export function Modal ({ title, children, showModal, setShowModal, buttons }: Mo
                             { children }
                         </Content>
                         <Footer>
-                            { buttons }
+                            {
+                                buttons?.map((btn, index)=> (
+                                    <React.Fragment key={index}>
+                                        {btn}
+                                    </React.Fragment>
+                                ))
+                            }
                         </Footer>
                     </Container>
                 </Overlay>

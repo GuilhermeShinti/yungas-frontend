@@ -54,5 +54,11 @@ export const Footer = styled.div`
     position: sticky;
     top: 100vh;
     justify-content: space-between;
+    flex-direction: row-reverse;
+    display: flex;
+
+    button {
+        max-width: 200px;
+    }
 `;
 
