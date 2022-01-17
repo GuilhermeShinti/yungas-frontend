@@ -1,3 +1,5 @@
+import { Module } from "../Modules";
+
 export interface Course {
     id: number;
     name: string;
@@ -7,4 +9,5 @@ export interface Course {
     startDate: string;
     endDate: string;
     enabled: boolean;
+    modules?: Module[]
 }
