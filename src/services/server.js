@@ -41,10 +41,10 @@ export function makeServer({ environment = 'test' }) {
             }),
             class: Factory.extend({
                 name(i) {
-                    return `Aula ${i}`
+                    return `Aula ${i + 1}`
                 },
                 description(i) {
-                    return `Descrição sobre o curso ${i}`
+                    return `Descrição sobre o curso ${i + 1}`
                 }
             })
         },
@@ -119,6 +119,29 @@ export function makeServer({ environment = 'test' }) {
             });
 
             this.delete("/modulos/:id", (schema, request) => {
+                const id = request.params.id;
+                const module = schema.find('module', id);
+                module?.destroy();
+                return schema.modules.all();
+            });
+
+            let newClassId = 6;
+            this.post("/aulas", (schema, request) => {
+                const classe = JSON.parse(request.requestBody);
+                classe.id = newClassId++;
+                classe.moduleId = 1;
+                schema.classes.create(classe);
+                return schema.modules.all();
+            });
+
+            this.put("/aulas/:id", (schema, request) => {
+                const id = request.params.id;
+                const classe = JSON.parse(request.requestBody);
+                schema.classes.find(id).update(classe);
+                return schema.modules.all();
+            });
+
+            this.delete("/aulas/:id", (schema, request) => {
                 const id = request.params.id;
                 const module = schema.find('module', id);
                 module?.destroy();
