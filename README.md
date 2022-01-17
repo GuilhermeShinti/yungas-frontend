@@ -23,3 +23,6 @@ docker-compose up -d
 # Para encerrar as aplicações:
 docker-compose down
 ```
+
+## Tecnologias utilizadas
+Docker, Node, ReactJS, Typescript, Miragejs
